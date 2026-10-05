@@ -1,5 +1,6 @@
 using CultureSandbox.Data;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.StaticAssets;
 
 namespace CultureSandbox.Localization;
 
@@ -17,6 +18,13 @@ public class UserRequestCultureProvider : RequestCultureProvider
 
     public override async Task<ProviderCultureResult?> DetermineProviderCultureResult(HttpContext httpContext)
     {
+        // Static files (CSS, JS, images, _framework/*) don't need a culture: skip the store lookup.
+        // Works because WebApplication runs routing before this middleware, so the endpoint is already selected.
+        if (httpContext.GetEndpoint()?.Metadata.GetMetadata<StaticAssetDescriptor>() is not null)
+        {
+            return await NullProviderCultureResult;
+        }
+
         var queryUser = httpContext.Request.Query[UserQueryKey].ToString();
         var cookieUser = httpContext.Request.Cookies[UserCookieName];
         var userId = string.IsNullOrWhiteSpace(queryUser) ? cookieUser : queryUser.Trim();
