@@ -1,0 +1,48 @@
+@page "/inputs"
+
+<PageTitle>@L["NavInputs"]</PageTitle>
+
+<h1>@L["InputSection"]</h1>
+<p>@L["InputHelp"]</p>
+<p>CurrentCulture: <code>@CultureInfo.CurrentCulture.Name</code></p>
+
+<div class="d-flex flex-wrap gap-3 align-items-end">
+    <label>
+        text → decimal
+        <input class="form-control" @bind="textDecimal" />
+    </label>
+    <label>
+        type=number → decimal
+        <input class="form-control" type="number" step="any" @bind="numberDecimal" />
+    </label>
+    <label>
+        type=date → DateOnly
+        <input class="form-control" type="date" @bind="date" />
+    </label>
+    <label>
+        text → DateTime
+        <input class="form-control" @bind="textDate" />
+    </label>
+    <label>
+        text → decimal (@@bind:culture invariant)
+        <input class="form-control" @bind="invariantDecimal" @bind:culture="CultureInfo.InvariantCulture" />
+    </label>
+</div>
+
+<table class="table table-sm w-auto mt-3">
+    <tbody>
+        <tr><th>@L["Parsed"] (text → decimal)</th><td><code>@textDecimal</code></td></tr>
+        <tr><th>@L["Parsed"] (type=number)</th><td><code>@numberDecimal</code></td></tr>
+        <tr><th>@L["Parsed"] (type=date)</th><td><code>@date</code></td></tr>
+        <tr><th>@L["Parsed"] (text → DateTime)</th><td><code>@textDate</code></td></tr>
+        <tr><th>@L["Parsed"] (invariant)</th><td><code>@invariantDecimal</code></td></tr>
+    </tbody>
+</table>
+
+@code {
+    private decimal textDecimal = 1234.56m;
+    private decimal numberDecimal = 1234.56m;
+    private DateOnly date = new(2026, 3, 14);
+    private DateTime textDate = new(2026, 3, 14);
+    private decimal invariantDecimal = 1234.56m;
+}

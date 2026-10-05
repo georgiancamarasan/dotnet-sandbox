@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+  </PropertyGroup>
+
+  <!-- App_Data/users.json is the runtime "DB": don't publish it, and don't let dotnet watch react to writes. -->
+  <ItemGroup>
+    <Content Remove="App_Data\**" />
+    <Watch Remove="App_Data\**" />
+  </ItemGroup>
+
+</Project>

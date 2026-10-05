@@ -1,0 +1,83 @@
+@page "/"
+@using CultureSandbox.Data
+@inject UserCultureStore Store
+
+<PageTitle>@L["AppTitle"]</PageTitle>
+
+<h1>@L["Welcome"]</h1>
+<p class="lead">@L["Intro"]</p>
+
+<p>
+    Interactive: <code>@RendererInfo.IsInteractive</code> · Renderer: <code>@RendererInfo.Name</code>
+    (the first paint is prerendered over HTTP, then the circuit takes over and re-renders)
+</p>
+
+<LocalizedSamples>
+    <tr><th colspan="2" class="pt-3">Request that started the circuit</th></tr>
+    @if (InitialRequest is null)
+    {
+        <tr><td colspan="2">(not available)</td></tr>
+    }
+    else
+    {
+        <tr><th>@L["User"]</th><td><code>@(InitialRequest.UserId ?? "(none)")</code></td></tr>
+        <tr><th>Culture / UI culture</th><td><code>@InitialRequest.Culture</code> / <code>@InitialRequest.UICulture</code></td></tr>
+        <tr><th>Resolved by provider</th><td><code>@(InitialRequest.Provider ?? "(none – default culture)")</code></td></tr>
+    }
+</LocalizedSamples>
+
+<h3>@L["AllUsers"]</h3>
+<table class="table table-sm w-auto">
+    <thead><tr><th>Id</th><th>Culture</th><th>Created</th></tr></thead>
+    <tbody>
+        @foreach (var user in users)
+        {
+            <tr class="@(user.Id == InitialRequest?.UserId ? "table-primary" : null)">
+                <td>@user.Id</td><td><code>@user.Culture</code></td><td>@user.CreatedAt.ToLocalTime().ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-sm btn-outline-secondary mb-4" @onclick="LoadUsers">↻</button>
+
+<h3>@L["Counter"]: @count</h3>
+<button class="btn btn-primary" @onclick="() => count++">@L["ClickMe"]</button>
+
+<h3 class="mt-4">@L["ForceCulture"]</h3>
+<p class="small text-muted">
+    Sets <code>CultureInfo.CurrentCulture</code> / <code>CurrentUICulture</code> inside an event handler.
+    Watch whether it sticks for the next event (e.g. clicking the counter), or after navigating to another page and back.
+</p>
+@foreach (var culture in new[] { "en", "fr", "fr-CA", "en-GB" })
+{
+    <button class="btn btn-sm btn-outline-secondary me-1" @onclick="() => ForceCulture(culture)">@culture</button>
+}
+<button class="btn btn-sm btn-outline-danger me-1" @onclick="ForceCultureDefaults">
+    DefaultThreadCurrentCulture = fr (process-wide!)
+</button>
+
+@code {
+    [CascadingParameter] public InitialRequestInfo? InitialRequest { get; set; }
+
+    private int count;
+    private IReadOnlyList<UserRecord> users = [];
+
+    protected override Task OnInitializedAsync() => LoadUsers();
+
+    private async Task LoadUsers() => users = await Store.GetAllAsync();
+
+    private static void ForceCulture(string name)
+    {
+        var culture = CultureInfo.GetCultureInfo(name);
+        CultureInfo.CurrentCulture = culture;
+        CultureInfo.CurrentUICulture = culture;
+    }
+
+    // Process-wide default for new threads: affects other users/circuits too. Sandbox only!
+    private static void ForceCultureDefaults()
+    {
+        var culture = CultureInfo.GetCultureInfo("fr");
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+    }
+}

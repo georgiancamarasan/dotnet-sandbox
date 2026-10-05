@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Bac à sable culturel</value>
+  </data>
+  <data name="NavHome" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue dans le bac à sable culturel !</value>
+  </data>
+  <data name="Intro" xml:space="preserve">
+    <value>Toute l'application fonctionne en mode Serveur interactif. La culture est chargée depuis l'enregistrement de l'utilisateur courant dans un fichier JSON, une fois par requête HTTP (la requête de la page et celle qui démarre le circuit), et reste la même jusqu'au rechargement complet de la page.</value>
+  </data>
+  <data name="ItemsInCart" xml:space="preserve">
+    <value>Vous avez {0} articles dans votre panier, pour un total de {1:C}.</value>
+  </data>
+  <data name="LastVisit" xml:space="preserve">
+    <value>Votre dernière visite date du {0:D}.</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="Formatting" xml:space="preserve">
+    <value>Exemples de formatage</value>
+  </data>
+  <data name="Diagnostics" xml:space="preserve">
+    <value>Diagnostic</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>Pourcentage</value>
+  </data>
+  <data name="Counter" xml:space="preserve">
+    <value>Compteur</value>
+  </data>
+  <data name="ClickMe" xml:space="preserve">
+    <value>Cliquez-moi</value>
+  </data>
+  <data name="ForceCulture" xml:space="preserve">
+    <value>Forcer la culture dans le circuit</value>
+  </data>
+  <data name="InputSection" xml:space="preserve">
+    <value>Analyse des saisies</value>
+  </data>
+  <data name="InputHelp" xml:space="preserve">
+    <value>Saisissez un nombre décimal et une date. L'analyse suit la culture actuelle du circuit.</value>
+  </data>
+  <data name="Parsed" xml:space="preserve">
+    <value>Valeur analysée</value>
+  </data>
+  <data name="NavInputs" xml:space="preserve">
+    <value>Saisies</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Utilisateur</value>
+  </data>
+  <data name="NoUser" xml:space="preserve">
+    <value>Aucun utilisateur. Ajoutez ?user=&lt;nom&gt; à l'URL (les nouveaux utilisateurs commencent en en).</value>
+  </data>
+  <data name="SaveForUser" xml:space="preserve">
+    <value>Enregistrer la culture pour cet utilisateur</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="AllUsers" xml:space="preserve">
+    <value>Tous les utilisateurs enregistrés</value>
+  </data>
+</root>

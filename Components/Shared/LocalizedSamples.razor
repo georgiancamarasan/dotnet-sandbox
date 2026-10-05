@@ -1,0 +1,36 @@
+@* Renders in whatever render mode its parent uses, so it shows the culture of the SSR request or of the circuit. *@
+
+<p>@L["ItemsInCart", 3, 1234.5m]</p>
+<p>@L["LastVisit", SampleDate]</p>
+
+<h3>@L["Formatting"]</h3>
+<table class="table table-sm w-auto">
+    <tbody>
+        <tr><th>@L["Date"] (D)</th><td>@SampleDate.ToString("D")</td></tr>
+        <tr><th>@L["Date"] (f)</th><td>@SampleDate.ToString("f")</td></tr>
+        <tr><th>@L["Date"] (d)</th><td>@SampleDate.ToString("d")</td></tr>
+        <tr><th>@L["Number"] (N2)</th><td>@SampleNumber.ToString("N2")</td></tr>
+        <tr><th>@L["Currency"] (C)</th><td>@SampleNumber.ToString("C")</td></tr>
+        <tr><th>@L["Percent"] (P1)</th><td>@(0.4567.ToString("P1"))</td></tr>
+        <tr><th>Implicit (@@value)</th><td>@SampleNumber · @SampleDate</td></tr>
+    </tbody>
+</table>
+
+<h3>@L["Diagnostics"]</h3>
+<table class="table table-sm w-auto">
+    <tbody>
+        <tr><th>CurrentCulture</th><td><code>@CultureInfo.CurrentCulture.Name</code></td></tr>
+        <tr><th>CurrentUICulture</th><td><code>@CultureInfo.CurrentUICulture.Name</code></td></tr>
+        <tr><th>Rendered at</th><td>@DateTime.Now.ToString("HH:mm:ss.fff", CultureInfo.InvariantCulture)</td></tr>
+        <tr><th>Thread</th><td>@Environment.CurrentManagedThreadId</td></tr>
+        @ChildContent
+    </tbody>
+</table>
+
+@code {
+    private static readonly DateTime SampleDate = new(2026, 3, 14, 15, 9, 26);
+    private const decimal SampleNumber = 1234567.89m;
+
+    /// <summary>Extra diagnostic rows supplied by the page.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

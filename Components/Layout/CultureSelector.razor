@@ -1,0 +1,42 @@
+@* Interactive (global Interactive Server). Saving a culture goes through /culture/set with forceLoad: true,
+   so a new HTTP request resolves the user's culture again and a new circuit starts with it. *@
+@inject NavigationManager Navigation
+
+<div class="culture-selector d-flex flex-wrap align-items-center gap-2">
+    @if (InitialRequest?.UserId is { } userId)
+    {
+        <strong>@L["User"]:</strong> <code>@userId</code>
+        <button class="btn btn-sm btn-outline-secondary" @onclick="LogOut">@L["LogOut"]</button>
+
+        <span class="text-muted small ms-3">@L["SaveForUser"]</span>
+        @foreach (var culture in Cultures)
+        {
+            <button class="btn btn-sm @(IsCurrent(culture) ? "btn-primary" : "btn-outline-primary")"
+                    @onclick="() => SaveCulture(culture)">@culture</button>
+        }
+    }
+    else
+    {
+        <span class="text-muted">@L["NoUser"]</span>
+    }
+</div>
+
+@code {
+    private static readonly string[] Cultures = ["en", "en-US", "en-GB", "fr", "fr-FR", "fr-CA"];
+
+    [CascadingParameter] public InitialRequestInfo? InitialRequest { get; set; }
+
+    // Path + query relative to the app base, without the user query parameter.
+    private string CurrentPath => "/" + Navigation.ToBaseRelativePath(
+        Navigation.GetUriWithQueryParameter("user", (string?)null));
+
+    private static bool IsCurrent(string culture) => CultureInfo.CurrentCulture.Name == culture;
+
+    private void SaveCulture(string culture) =>
+        Navigation.NavigateTo(
+            $"culture/set?culture={Uri.EscapeDataString(culture)}&redirectUri={Uri.EscapeDataString(CurrentPath)}",
+            forceLoad: true);
+
+    private void LogOut() =>
+        Navigation.NavigateTo($"user/clear?redirectUri={Uri.EscapeDataString(CurrentPath)}", forceLoad: true);
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Culture Sandbox</value>
+  </data>
+  <data name="NavHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to the culture sandbox!</value>
+  </data>
+  <data name="Intro" xml:space="preserve">
+    <value>The whole app runs in Interactive Server mode. The culture is loaded from the current user's record in a JSON file, once per HTTP request (the page request and the request that starts the circuit), and stays the same until the page is fully reloaded.</value>
+  </data>
+  <data name="ItemsInCart" xml:space="preserve">
+    <value>You have {0} items in your cart, worth {1:C}.</value>
+  </data>
+  <data name="LastVisit" xml:space="preserve">
+    <value>Your last visit was on {0:D}.</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Formatting" xml:space="preserve">
+    <value>Formatting samples</value>
+  </data>
+  <data name="Diagnostics" xml:space="preserve">
+    <value>Diagnostics</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>Percent</value>
+  </data>
+  <data name="Counter" xml:space="preserve">
+    <value>Counter</value>
+  </data>
+  <data name="ClickMe" xml:space="preserve">
+    <value>Click me</value>
+  </data>
+  <data name="ForceCulture" xml:space="preserve">
+    <value>Force culture inside circuit</value>
+  </data>
+  <data name="InputSection" xml:space="preserve">
+    <value>Input parsing</value>
+  </data>
+  <data name="InputHelp" xml:space="preserve">
+    <value>Type a decimal number and a date. Parsing follows the circuit's current culture.</value>
+  </data>
+  <data name="Parsed" xml:space="preserve">
+    <value>Parsed value</value>
+  </data>
+  <data name="NavInputs" xml:space="preserve">
+    <value>Inputs</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="NoUser" xml:space="preserve">
+    <value>No user. Add ?user=&lt;name&gt; to the URL (new users start with en).</value>
+  </data>
+  <data name="SaveForUser" xml:space="preserve">
+    <value>Save culture for this user</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="AllUsers" xml:space="preserve">
+    <value>All users in the store</value>
+  </data>
+</root>
